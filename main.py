@@ -4,8 +4,11 @@ import os
 import ytthumb
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.errors import UserNotParticipant
 
 load_dotenv()
+
+CHAT_ID = int(os.environ.get('CHAT_ID', -1001332181134))
 
 Bot = Client(
     "YouTube-Thumbnail-Downloader",
@@ -15,9 +18,9 @@ Bot = Client(
 )
 
 START_TEXT = """Hello {},
-I am a simple youtube thumbnail downloader telegram bot.
+**I am a simple youtube thumbnail downloader telegram bot.**
 
-- Send a youtube video link or video ID.
+- __Send a youtube video link or video ID.__
 - I will send the thumbnail.
 - You can also send youtube video link or video id with quality. ( like :- `rokGy0huYEA | sd`
   - sd - Standard Quality
@@ -25,9 +28,9 @@ I am a simple youtube thumbnail downloader telegram bot.
   - hq - High Quality
   - maxres - Maximum Resolution
 
-Made by @FayasNoushad"""
+**Made by @CrazeBots**"""
 
-BUTTON = [InlineKeyboardButton('⚙ Join Channel ⚙', url='https://telegram.me/FayasNoushad')]
+BUTTON = [InlineKeyboardButton('⚙ Join Channel ⚙', url='https://telegram.me/Crazebots')]
 
 photo_buttons = InlineKeyboardMarkup(
     [[InlineKeyboardButton('Other Qualities', callback_data='qualities')], BUTTON]
@@ -68,6 +71,12 @@ async def cb_data(_, message):
 
 @Bot.on_message(filters.private & filters.command(["start"]))
 async def start(_, message):
+    try:
+        await Bot.get_chat_member(CHAT_ID,message.chat.id)
+    except UserNotParticipant:
+        await Bot.send_message(message.chat.id, 'Please Join My **Updates Channel** to Use Me!!', reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Updates Channel 📣",url="https://t.me/crazebots"),]]))
+        return
+
     await message.reply_text(
         text=START_TEXT.format(message.from_user.mention),
         disable_web_page_preview=True,
