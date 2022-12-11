@@ -22,7 +22,7 @@ START_TEXT = """Hello {},
 
 - __Send a youtube video link or video ID.__
 - I will send the thumbnail.
-- You can also send youtube video link or video id with quality. ( like :- `rokGy0huYEA | sd`
+- You can also send youtube video link or video id with quality. \n\n( like :- `rokGy0huYEA | sd`\n\n`rokGy0huYEA | mq`\n\n`rokGy0huYEA | hq`\n\n`rokGy0huYEA | maxres`
   - sd - Standard Quality
   - mq - Medium Quality
   - hq - High Quality
@@ -33,7 +33,7 @@ START_TEXT = """Hello {},
 BUTTON = [InlineKeyboardButton('⚙ Join Channel ⚙', url='https://telegram.me/Crazebots')]
 
 photo_buttons = InlineKeyboardMarkup(
-    [[InlineKeyboardButton('Other Qualities', callback_data='qualities')], BUTTON]
+    [BUTTON]
 )
 
 @Bot.on_callback_query()
@@ -51,7 +51,7 @@ async def cb_data(_, message):
             )
         await message.edit_message_reply_markup(
             InlineKeyboardMarkup(
-                [[buttons[0], buttons[1]], [buttons[2], buttons[3]], BUTTON]
+                [BUTTON]
             )
         )
     if data == "back":
