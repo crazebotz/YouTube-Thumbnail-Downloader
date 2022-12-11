@@ -22,7 +22,7 @@ START_TEXT = """Hello {},
 
 - __Send a youtube video link or video ID.__
 - I will send the thumbnail.
-- You can also send youtube video link or video id with quality. \n\n( like :- `rokGy0huYEA | sd`\n\n`rokGy0huYEA | mq`\n\n`rokGy0huYEA | hq`\n\n`rokGy0huYEA | maxres`
+- You can also send youtube video link or video id with quality. \n\n**( like :-** \n`rokGy0huYEA | sd`\n`rokGy0huYEA | mq`\n`rokGy0huYEA | hq`\n`rokGy0huYEA | maxres`\n
   - sd - Standard Quality
   - mq - Medium Quality
   - hq - High Quality
