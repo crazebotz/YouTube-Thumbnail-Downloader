@@ -6,7 +6,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import UserNotParticipant
 
-load_dotenv()
+
 
 CHAT_ID = int(os.environ.get('CHAT_ID', -1001332181134))
 
